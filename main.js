@@ -2,6 +2,10 @@ const products = document.getElementById("products");
 const carts = document.getElementById("cart");
 const inBascet = document.getElementById("inBasket");
 const openCart = document.querySelector(".basket");
+const cleaningCart = document.getElementById("cleaningCart");
+const totalSum = document.getElementById("totalSum");
+const buy = document.getElementById("cartBuy");
+const back = document.getElementById("back");
 const market = {
   productsAll: [
     {
@@ -88,14 +92,14 @@ const market = {
       }
     });
   },
+  changeList() {
+    products.classList.toggle("active");
+    inBascet.classList.toggle("active");
+  },
   cart: {
     items: [],
     getItems() {
       return this.items;
-    },
-    changeList() {
-      products.classList.toggle("active");
-      inBascet.classList.toggle("active");
     },
     renderCart() {
       carts.innerHTML = "";
@@ -155,7 +159,7 @@ const market = {
         }
       });
     },
-    clear() {
+    clean() {
       this.items = [];
     },
     countTotalPrice() {
@@ -190,6 +194,15 @@ const market = {
       let result = document.querySelector("#result");
       result.innerHTML = this.items.length;
     },
+    totalSum() {
+      const { items } = this;
+      let sum = 0;
+      items.forEach(({ price, quantity }) => {
+        sum += price * quantity;
+      });
+      totalSum.innerHTML = sum.toFixed(2) + "$";
+      return +sum.toFixed(2);
+    },
   },
 };
 
@@ -199,7 +212,6 @@ products.addEventListener("click", (e) => {
   market.decreaseItemNumber(minus);
   market.renderProducts(market.productsAll);
 });
-
 products.addEventListener("click", (e) => {
   market.increaseItemNumber(+e.target.dataset.plusId);
   market.renderProducts(market.productsAll);
@@ -211,18 +223,49 @@ products.addEventListener("click", (e) => {
 });
 openCart.addEventListener("click", (e) => {
   market.cart.renderCart();
-  market.cart.changeList();
+  market.changeList();
+  market.cart.totalSum();
 });
 carts.addEventListener("click", (e) => {
   market.cart.increaseQuartity(+e.target.dataset.plusBas);
   market.cart.renderCart(market.productsAll);
+  market.cart.totalSum();
 });
 carts.addEventListener("click", (e) => {
   market.cart.decreaseQuartity(+e.target.dataset.minusBas);
   market.cart.renderCart(market.productsAll);
+  market.cart.totalSum();
 });
 carts.addEventListener("click", (e) => {
   market.cart.remove(+e.target.dataset.remove);
   market.cart.renderCart(market.productsAll);
   market.cart.totalBasket();
+  market.cart.totalSum();
+});
+cleaningCart.addEventListener("click", (e) => {
+  if (market.cart.items.length !== 0) {
+    const ok = confirm("to clean the basket?");
+    if (ok === true) {
+      market.cart.clean();
+      market.cart.renderCart();
+      market.cart.totalBasket();
+      market.cart.totalSum();
+    }
+  }
+});
+buy.addEventListener("click", (e) => {
+  const sum = market.cart.totalSum();
+  if (sum !== 0) {
+    const ok = confirm(`Pay ${sum}$`);
+    if (ok === true) {
+      market.cart.clean();
+      market.cart.renderCart();
+      market.cart.totalSum();
+      market.cart.totalBasket();
+      market.changeList();
+    }
+  }
+});
+back.addEventListener("click", (e) => {
+  market.changeList();
 });
