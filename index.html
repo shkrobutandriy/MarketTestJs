@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Market</title>
+  </head>
+  <body>
+    <div class="conteiner">
+      <header class="header">
+        <ul>
+          <li>
+            <img src="img/market-logo.png" alt="" />
+          </li>
+          <li class="basket">
+            <a id="basket" href="#"
+              ><img class="basket" src="img/завантаження.png" alt="" /><span
+                id="result"
+                >0</span
+              ></a
+            >
+          </li>
+        </ul>
+      </header>
+      <nav>
+        <div id="products" class="products"></div>
+        <div class="inBasket" id="inBasket">
+          <div id="cart" class="cart"></div>
+          <div class="fotterBasket">
+            <button class="cartBtn">Cleaning</button>
+            <div>
+              <button class="cartBuy cartBtn">Buy All</button>
+              <span class="totalSum" id="totalSum">0<span>₴</span></span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
