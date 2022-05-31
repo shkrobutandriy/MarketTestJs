@@ -153,7 +153,7 @@ const market = {
     },
     remove(i) {
       const { items } = this;
-      items.forEach(({ name }, index) => {
+      items.forEach((item, index) => {
         if (index === i) {
           items.splice(index, 1);
         }
@@ -170,14 +170,14 @@ const market = {
       });
       return total;
     },
-    increaseQuartity(id) {
+    increaseQuantity(id) {
       this.items.forEach((item) => {
         if (item.id === id) {
           item.quantity += 1;
         }
       });
     },
-    decreaseQuartity(id) {
+    decreaseQuantity(id) {
       this.items.forEach((item, index) => {
         if (item.id === id && item.quantity > 1) {
           item.quantity -= 1;
@@ -227,12 +227,12 @@ openCart.addEventListener("click", (e) => {
   market.cart.totalSum();
 });
 carts.addEventListener("click", (e) => {
-  market.cart.increaseQuartity(+e.target.dataset.plusBas);
+  market.cart.increaseQuantity(+e.target.dataset.plusBas);
   market.cart.renderCart(market.productsAll);
   market.cart.totalSum();
 });
 carts.addEventListener("click", (e) => {
-  market.cart.decreaseQuartity(+e.target.dataset.minusBas);
+  market.cart.decreaseQuantity(+e.target.dataset.minusBas);
   market.cart.renderCart(market.productsAll);
   market.cart.totalSum();
 });

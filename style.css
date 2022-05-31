@@ -1,5 +1,6 @@
 
 .conteiner {
+  position: relative;
     max-width: 720px;
     height: 100vh;
       margin: 0 auto;
@@ -120,6 +121,14 @@ justify-content: end;
 .buy {
   width: 100px;
   height: 50px;
+  text-transform: uppercase;
+}
+.buy:hover {
+  border: 0;
+  font-weight: 500;
+  font-size: 20px;
+  text-transform: uppercase;
+  /* width: 105px; */
 }
 .inBasket {
  display: none;
@@ -137,26 +146,41 @@ justify-content: end;
 }
 .removeItem {
   padding: 5px;
-  border: 2px solid black;
+  border: 2px solid rgb(150, 200, 243);
   margin-right: 20px;
-  border-radius: 5px;
-  font-weight: 900;
-  background-color: rgb(167, 63, 63);
+  border-radius: 10px;
+  font-weight: 800;
+  background-color: rgb(255, 255, 255);
+  text-transform: uppercase;
+}
+.removeItem:hover {
+  background-color: rgb(255, 0, 0);
+  color: #fff;
+  border: #fff;
 }
 .fotterBasket {
-border: black 1px solid;
-border-radius: 5px;
-margin: 20px 40px 0;
+border: rgb(150, 200, 243) 1px solid;
+border-radius: 10px;
+margin: 0 auto;
 padding: 5px 0;
 background-color: rgb(255, 255, 255);
 display: flex;
 justify-content: space-around;
+position: absolute;
+width: 100%;
+bottom: 20px;
+/* left: 50%; */
 }
 .cartBtn {
 height: 50px;
-background-color: blue;
-color: #fff;
+background-color: rgb(150, 200, 243);
+color: black;
 font-size: 26px;
+}
+.cartBtn:hover {
+  background-color: blue;
+  box-shadow: 5px 5px 5px rgb(150, 200, 243);
+  color: #fff;
 }
 .cartBuy {
   margin-right: 10px;
@@ -164,4 +188,8 @@ font-size: 26px;
 .totalSum {
   font-size: 30px;
   font-weight: bold;
+  width: 150px;
+}
+#totalSum {
+  width: 200px;
 }
